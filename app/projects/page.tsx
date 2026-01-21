@@ -1,18 +1,25 @@
 export default function Projects() {
   return (
     <main className="min-h-screen px-6 py-24 max-w-6xl mx-auto">
-      <h2 className="text-4xl font-bold text-sky-400">| Projetos Java |</h2>
-      <div>
-        <br></br>
-        <h3 className="text-2xl font-bold text-shadow-white">API Rest + IA</h3>
+      {/* Título Principal com destaque */}
+      <h2 className="text-4xl font-bold text-sky-400 mb-6">
+        | Projetos Java |
+      </h2>
+
+      <div className="mb-6">
+        <h3 className="text-2xl font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+          API Rest + IA
+        </h3>
       </div>
-      <p className="mt-6 text-slate-400">
-        Projeto focado em microsserviços Java (API Rest), e uso responsável de
+
+      <p className="text-slate-400 leading-relaxed">
+        Projeto focado em microsserviços Java (API Rest) e uso responsável de
         Inteligência Artificial.
       </p>
+
       {/* --- Card do Projeto Incident API --- */}
-      <section className="mt-12 bg-slate-900/50 border border-slate-800 rounded-xl overflow-hidden">
-        <div className="p-8 text-center border-b border-slate-800">
+      <section className="mt-12 bg-slate-900/50 border border-slate-800 rounded-xl overflow-hidden shadow-2xl">
+        <div className="p-8 text-center border-b border-slate-800 bg-slate-900/80">
           <h3 className="text-2xl font-bold text-white flex items-center justify-center gap-2">
             <span className="text-sky-400">🔹</span> Incident Classification API
           </h3>
@@ -22,58 +29,67 @@ export default function Projects() {
           </p>
         </div>
 
-        <div className="p-8">
-          <div className="bg-slate-800/40 p-6 rounded-lg border-l-4 border-sky-500 text-slate-300 leading-relaxed italic">
+        <div className="p-8 space-y-8">
+          {/* Box de Destaque / Descrição Técnica */}
+          <div className="bg-sky-500/5 p-6 rounded-lg border-l-4 border-sky-500 text-slate-300 leading-relaxed italic">
             Esta API REST, desenvolvida com{" "}
             <strong>Java 17 e Spring Boot</strong>, automatiza o registro e a
             classificação de incidentes utilizando{" "}
             <strong>Inteligência Artificial</strong>. O diferencial do sistema
-            reside na sua resiliência: através de um mecanismo de{" "}
-            <strong>fallback local</strong>, a classificação permanece
-            operacional mesmo em caso de indisponibilidade de serviços externos
-            de IA.
+            reside na sua resiliência através de um mecanismo de{" "}
+            <strong>fallback local</strong>.
           </div>
-          <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:border-cyan-500 transition">
-            <h3 className="text-xl font-semibold text-cyan-400">
-              Incident Classification API
+
+          {/* Card Interno de Links */}
+          <div className="bg-zinc-900/80 border border-zinc-800 rounded-xl p-6 hover:border-sky-500/50 transition-all group">
+            <h3 className="text-xl font-semibold text-sky-400 group-hover:text-sky-300 transition-colors">
+              Detalhes da Implementação
             </h3>
 
-            <p className="text-zinc-400 mt-2">
-              API backend em Java para classificação automática de incidentes
-              utilizando IA com fallback resiliente.
-            </p>
-
-            <ul className="text-sm text-zinc-500 mt-4 space-y-1">
-              <li>• Java 17 + Spring Boot</li>
-              <li>• IA aplicada a sistemas corporativos</li>
-              <li>• Fallback local inteligente</li>
-              <li>• Swagger / H2 / JPA</li>
+            <ul className="text-sm text-zinc-400 mt-4 grid grid-cols-1 md:grid-cols-2 gap-2">
+              <li className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-sky-500 rounded-full"></span>
+                Java 17 + Spring Boot
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-sky-500 rounded-full"></span>
+                IA aplicada a sistemas corporativos
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-sky-500 rounded-full"></span>
+                Fallback local inteligente
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-sky-500 rounded-full"></span>
+                Swagger / H2 / JPA
+              </li>
             </ul>
 
-            <div className="flex gap-3 mt-6">
+            <div className="flex flex-wrap gap-3 mt-8">
               <a
                 href="http://localhost:8080/swagger-ui.htm"
                 target="_blank"
-                className="px-4 py-2 text-sm bg-zinc-800 rounded hover:bg-cyan-600"
+                rel="noopener noreferrer"
+                className="px-6 py-2 text-sm font-medium bg-zinc-800 text-white rounded-lg hover:bg-sky-600 transition-all border border-zinc-700"
               >
-                Swagger
+                Documentação Swagger
               </a>
 
               <a
                 href="https://github.com/Efra85/API-SpringBoot-IA"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 text-sm bg-zinc-800 rounded hover:bg-cyan-600"
+                className="px-6 py-2 text-sm font-medium bg-zinc-800 text-white rounded-lg hover:bg-sky-600 transition-all border border-zinc-700"
               >
-                GitHub
+                Repositório GitHub
               </a>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mt-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {/* Tecnologias */}
             <div>
-              <h4 className="text-white font-semibold flex items-center gap-2 mb-4">
+              <h4 className="text-white font-semibold flex items-center gap-2 mb-4 border-b border-slate-800 pb-2">
                 🛠 Tecnologias
               </h4>
               <div className="flex flex-wrap gap-2">
@@ -81,14 +97,14 @@ export default function Projects() {
                   "Java 17",
                   "Spring Boot",
                   "Spring Data JPA",
-                  "H2 Database",
+                  "H2",
                   "Swagger",
                   "JUnit 5",
                   "Mockito",
                 ].map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 bg-sky-500/10 text-sky-400 text-xs font-mono rounded-full border border-sky-500/20"
+                    className="px-3 py-1 bg-sky-500/10 text-sky-400 text-xs font-mono rounded-md border border-sky-500/20"
                   >
                     {tech}
                   </span>
@@ -98,35 +114,34 @@ export default function Projects() {
 
             {/* Funcionalidades */}
             <div>
-              <h4 className="text-white font-semibold flex items-center gap-2 mb-4">
+              <h4 className="text-white font-semibold flex items-center gap-2 mb-4 border-b border-slate-800 pb-2">
                 ⚙️ Funcionalidades
               </h4>
-              <ul className="text-slate-400 space-y-2 text-sm">
-                <li className="flex items-start gap-2">
-                  <span className="text-sky-500">•</span> Registro e listagem de
-                  incidentes
+              <ul className="text-slate-400 space-y-3 text-sm">
+                <li className="flex items-center gap-3">
+                  <div className="w-1 h-1 bg-sky-500 rotate-45"></div>
+                  Registro e listagem de incidentes
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-sky-500">•</span> Análise preditiva de
-                  severidade
+                <li className="flex items-center gap-3">
+                  <div className="w-1 h-1 bg-sky-500 rotate-45"></div>
+                  Análise preditiva de severidade
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-sky-500">•</span> Recomendações técnicas
-                  automáticas
+                <li className="flex items-center gap-3">
+                  <div className="w-1 h-1 bg-sky-500 rotate-45"></div>
+                  Recomendações técnicas automáticas
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-sky-500">•</span> Mecanismo de
-                  resiliência inteligente
+                <li className="flex items-center gap-3">
+                  <div className="w-1 h-1 bg-sky-500 rotate-45"></div>
+                  Mecanismo de resiliência inteligente
                 </li>
               </ul>
             </div>
           </div>
         </div>
 
-        <div className="p-6 bg-slate-800/20 text-center border-t border-slate-800">
-          <p className="text-xs text-slate-500 italic">
-            📌 Projeto desenvolvido para simular um cenário real de backend
-            corporativo, com foco rigoroso em arquitetura limpa e resiliência.
+        <div className="p-4 bg-slate-900/80 text-center border-t border-slate-800">
+          <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">
+            Foco em Arquitetura Limpa e Resiliência Corporativa
           </p>
         </div>
       </section>
