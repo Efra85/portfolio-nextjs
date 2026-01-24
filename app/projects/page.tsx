@@ -23,7 +23,7 @@ export default function Projects() {
     setLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:8080/api/incidents/classify",
+        "https://dashboard.render.com/web/srv-d5qji515pdvs7397p1s0",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
