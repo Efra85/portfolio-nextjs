@@ -2,6 +2,11 @@
 
 import { useEffect, useState } from "react";
 
+interface IncidentResponse {
+  classification: string;
+  suggestion: string; // Certifique-se de que o Java envia este nome exato
+}
+
 export default function Projects() {
   const [apiStatus, setApiStatus] = useState<"checking" | "online" | "offline">(
     "checking",
@@ -43,7 +48,11 @@ export default function Projects() {
         throw new Error(data.message || "Erro na resposta da API");
       }
 
-      setResult(data.classification || "Incidente processado com sucesso!");
+      setResult(
+        data.suggestion ||
+          data.classification ||
+          "Incidente processado com sucesso!",
+      );
 
       // Limpa os campos após o sucesso para novo teste
       setTitle("");
