@@ -2,11 +2,10 @@
 
 import { useEffect, useState } from "react";
 
-// Definimos uma interface para o que o Java retorna
+// Interface para mapear a resposta da sua API Java
 interface IncidentResponse {
   classification: string;
-  suggestion?: string; // Campo opcional para a sugestão da IA
-  priority?: string;
+  suggestion?: string; // Campo que conterá a recomendação da IA
 }
 
 export default function Projects() {
@@ -43,71 +42,80 @@ export default function Projects() {
 
       const data: IncidentResponse = await response.json();
 
-      if (!response.ok) throw new Error("Erro na API");
+      if (!response.ok) throw new Error("Erro na análise da API");
 
-      setResult(data); // Guardamos o objeto inteiro da resposta
+      setResult(data); // Armazena o objeto completo com a sugestão
       setTitle("");
       setDescription("");
-    } catch (error) {
-      console.error(error);
+    } catch (error: unknown) {
+      console.error("Erro:", error);
     } finally {
       setLoading(false);
     }
+  };
 
-    return (
-      <main className="min-h-screen px-6 py-24 max-w-6xl mx-auto">
-        {/* ... (cabeçalho permanece igual) ... */}
+  return (
+    <main className="min-h-screen px-6 py-24 max-w-6xl mx-auto">
+      {/* ... Cabeçalho de Status (mantido igual aos prints anteriores) ... */}
 
-        <section className="bg-slate-900/50 border border-slate-800 rounded-xl p-8 shadow-2xl">
-          <form onSubmit={handleClassify} className="space-y-4">
+      <section className="bg-slate-900/50 border border-slate-800 rounded-xl overflow-hidden shadow-2xl p-8">
+        <form onSubmit={handleClassify} className="space-y-4">
+          <div>
+            <label className="text-sm text-slate-400 mb-2 block">
+              Título do Incidente:
+            </label>
             <input
               className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-white outline-none focus:border-sky-500"
-              placeholder="Título do Incidente"
+              placeholder="Ex: Falha de Conectividade"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
             />
+          </div>
+          <div>
+            <label className="text-sm text-slate-400 mb-2 block">
+              Descrição Detalhada:
+            </label>
             <textarea
               className="w-full bg-slate-950 border border-slate-800 rounded-lg p-4 text-white outline-none focus:border-sky-500 resize-none"
-              placeholder="Descreva o incidente..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={3}
               required
             />
-            <button
-              type="submit"
-              disabled={loading || apiStatus === "offline"}
-              className="w-full py-3 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-lg transition-all"
-            >
-              {loading ? "IA Analisando..." : "Analisar Incidente"}
-            </button>
-          </form>
+          </div>
+          <button
+            type="submit"
+            disabled={loading || apiStatus === "offline"}
+            className="w-full py-3 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-lg transition-all"
+          >
+            {loading ? "IA Analisando..." : "Testar API"}
+          </button>
+        </form>
 
-          {/* EXIBIÇÃO DETALHADA DO RESULTADO */}
-          {result && (
-            <div className="mt-8 space-y-4 animate-in fade-in slide-in-from-top-4">
-              <div className="p-4 bg-sky-500/10 border-l-4 border-sky-500 rounded-r-lg">
-                <span className="text-sky-400 font-mono text-[10px] uppercase font-bold">
-                  Classificação IA:
-                </span>
-                <p className="text-white text-xl font-bold">
-                  {result.classification}
-                </p>
-              </div>
-
-              {result.suggestion && (
-                <div className="p-4 bg-emerald-500/10 border-l-4 border-emerald-500 rounded-r-lg">
-                  <span className="text-emerald-400 font-mono text-[10px] uppercase font-bold">
-                    Sugestão de Resposta:
-                  </span>
-                  <p className="text-slate-200 mt-1">{result.suggestion}</p>
-                </div>
-              )}
+        {/* ÁREA DE RESULTADO COM A SUGESTÃO */}
+        {result && (
+          <div className="mt-8 space-y-4">
+            <div className="p-4 bg-sky-500/10 border-l-4 border-sky-500 rounded-r-lg">
+              <span className="text-sky-400 font-mono text-[10px] uppercase font-bold">
+                Classificação:
+              </span>
+              <p className="text-white text-lg font-bold">
+                {result.classification}
+              </p>
             </div>
-          )}
-        </section>
-      </main>
-    );
-  };
+
+            {result.suggestion && (
+              <div className="p-4 bg-emerald-500/10 border-l-4 border-emerald-500 rounded-r-lg">
+                <span className="text-emerald-400 font-mono text-[10px] uppercase font-bold">
+                  Sugestão da IA:
+                </span>
+                <p className="text-slate-200 mt-1">{result.suggestion}</p>
+              </div>
+            )}
+          </div>
+        )}
+      </section>
+    </main>
+  );
 }
